@@ -23,7 +23,7 @@ Sé que esto es demasiado, pero está por mantener un orden (y porque me he flip
 |Lunes|Martes|Miercoles|Jueves|Sabado|Domingo|
 |-----|------|---------|------|------|-------|
 ||||||✅1|
-|✅2|❌3|❌4|❌5|❌6|❌7|❌8|
+|✅2|✅3|❌4|❌5|❌6|❌7|❌8|
 |❌9|❌10|❌11|❌12|❌13|❌14|❌15|
 |❌16|❌17|❌18|❌19|❌20|❌21|❌22|
 |❌23|❌24|❌25|||||
@@ -55,3 +55,14 @@ Este día se complicó un poco porque se trató de aplicar una solución que uti
 En esta parte se nos dijo que se admitía que los reportes tuvieran un nivel erroneo si al eliminarlo se cumplían las condiciones de la primera parte, es decir, si un reporte había fallado, pero tras eliminar un solo nivel del reporte este ya no fallaba, se consideraba que el reporte era seguro. Otra vez se nos pidió que entregaramos el número de reportes seguros.
 
 Otra vez se complicó un poco la solución, porque integrarla en la solución de la primera parte era complicado por cómo estaba escrito el código de la primera parte. Se decidió por reescribir el código de la primera parte de tal manera que fuera más facil integrar los cambios necesarios para la segunda parte. Una vez hecho esto, originalmente se pensó que sería una buena idea guardar donde está el elemento que ocasionaba el fallo y eliminarlo y volver a hacer la prueba, pero por si acaso, se decidió que era una mejor idea hacer una copia del reporte e ir haciendo el análisis eliminando con un elemento eliminado distinto cada vez.
+
+## Día 3
+### Primera Parte
+En esta parte se nos pedía que dada una memoria corrupta, que extrayeramos la instrucción mul(X,Y) y que realicemos la multiplicación de X por Y y que imprimieramos las suma de todas las multiplicaciones realizadas. La instrucción de mul(X,Y) se tenía que encontrar exactamente de la manera en la que aparece en el parrafo y no con algún caracter extraño o un espacio que separe los números de los paréntesis o comas. Tras un poco de investigación, se descubrió que se podía hacer con un regex.
+
+Este día se volvió a complicar, porque no conocíamos nada sobre regex y tuvimos que aprenderlo. Aunque una vez aprendido lo suficiente, nos pusimos con la solución y en un periodo de tiempo normal, esta se consiguió. Para lograrlo, lo que se hizo fue crear un regex que buscara la instrucción, luego el lugar donde la ha encontrado, se guardóen un string, del que se extrajeron los números y se realizaron las multiplicaciones. Tras esto, tuvimos un problema y era que el regex no encontraba todas las intruciones, pero tras un tiempo, descubirmos que era porque no habíamos puesto correctamente la eliminación de la instrucción encontrada. Tras esto, se solucionó el problema.
+
+### Segunda Parte
+En esta parte, se nos dijo que además de la instrución mul(X,Y, tambien se podía encontrar la instrucción do() y la instrucción don't() que habilitaban y deshabilitaban la instrucción mul(X,Y). Se nos pidió que realizaramos la suma de todas las multiplicaciones realizadas, pero que si la instrucción mul(X,Y) estaba deshabilitada, no se realizara la multiplicación. Para ello, se nos pidió que entregaramos la suma de todas las multiplicaciones realizadas.
+
+Para esta parte, se decidió que era mejor editar el regex, de tal manera que este encontrara o un do o un don't o la instrucción mul. Una vez encontrado, se guardaba en un string y se comprobaba si era un mul o un do o un don't usando un regex específico para cada una de las instrucciones. Si era un mul, se realizaba la multiplicación tras haber comprobado si esta estaba habilitada, si era un do, se habilitaba la instrucción mul y si era un don't, se deshabilitaba la instrucción mul. Tras esto, se realizó la suma de todas las multiplicaciones realizadas.
