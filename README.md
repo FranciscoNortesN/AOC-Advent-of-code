@@ -23,7 +23,7 @@ Sé que esto es demasiado, pero está por mantener un orden (y porque me he flip
 |Lunes|Martes|Miercoles|Jueves|Sabado|Domingo|
 |-----|------|---------|------|------|-------|
 ||||||✅1|
-|✅2|✅3|❌4|❌5|❌6|❌7|❌8|
+|✅2|✅3|⌛4|❌5|❌6|❌7|❌8|
 |❌9|❌10|❌11|❌12|❌13|❌14|❌15|
 |❌16|❌17|❌18|❌19|❌20|❌21|❌22|
 |❌23|❌24|❌25|||||
@@ -66,3 +66,9 @@ Este día se volvió a complicar, porque no conocíamos nada sobre regex y tuvim
 En esta parte, se nos dijo que además de la instrución mul(X,Y, tambien se podía encontrar la instrucción do() y la instrucción don't() que habilitaban y deshabilitaban la instrucción mul(X,Y). Se nos pidió que realizaramos la suma de todas las multiplicaciones realizadas, pero que si la instrucción mul(X,Y) estaba deshabilitada, no se realizara la multiplicación. Para ello, se nos pidió que entregaramos la suma de todas las multiplicaciones realizadas.
 
 Para esta parte, se decidió que era mejor editar el regex, de tal manera que este encontrara o un do o un don't o la instrucción mul. Una vez encontrado, se guardaba en un string y se comprobaba si era un mul o un do o un don't usando un regex específico para cada una de las instrucciones. Si era un mul, se realizaba la multiplicación tras haber comprobado si esta estaba habilitada, si era un do, se habilitaba la instrucción mul y si era un don't, se deshabilitaba la instrucción mul. Tras esto, se realizó la suma de todas las multiplicaciones realizadas.
+
+## Día 4
+### Primera Parte
+En esta parte, se nos pedía que resolvieramos una sopa de letras buscando la palabra XMAS y que entregaramos el número de veces que salía la palabra en la sopa de letras. La palabra podía estar en cualquier dirección y podía estar en cualquier lugar de la sopa de letras.
+
+Esta parte fue bastante sencilla, porque simplemente se recorrió la sopa de letras y se comprobó si en alguna de las direcciones se encontraba la letra X, si se encontraba, se comprobaba si en alguna dirección tenía la letra M, si la tenía, se comprobaba si en esa dirección estaba la A y así hasta llegar a la S. Si se encontraba la S, se sumaba 1 al contador de palabras encontradas.
