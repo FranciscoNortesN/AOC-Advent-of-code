@@ -71,4 +71,18 @@ Para esta parte, se decidió que era mejor editar el regex, de tal manera que es
 ### Primera Parte
 En esta parte, se nos pedía que resolvieramos una sopa de letras buscando la palabra XMAS y que entregaramos el número de veces que salía la palabra en la sopa de letras. La palabra podía estar en cualquier dirección y podía estar en cualquier lugar de la sopa de letras.
 
-Esta parte fue bastante sencilla, porque simplemente se recorrió la sopa de letras y se comprobó si en alguna de las direcciones se encontraba la letra X, si se encontraba, se comprobaba si en alguna dirección tenía la letra M, si la tenía, se comprobaba si en esa dirección estaba la A y así hasta llegar a la S. Si se encontraba la S, se sumaba 1 al contador de palabras encontradas.
+Esta parte fue bastante sencilla, porque simplemente se recorrió la sopa de letras y se comprobó si en alguna de las direcciones se encontraba la letra X, si se encontraba, se comprobaba si en alguna dirección
+tenía la letra M, si la tenía, se comprobaba si en esa dirección estaba la A y así hasta llegar a la S. Si se encontraba la S, se sumaba 1 al contador de palabras encontradas.
+
+
+
+
+## Día 5
+
+### Primera Parte
+  Para la primera parte se ha creado un array estático de 90 de posiciones(pues los números de la entrada van del 10 al 99) que almacena elementos de tipo vector. Las normas del input están dadas en dos columnas, así que vamos a almacenar los números de la segunda columna en nuestro array, en una posición generada por ese mismo número - 10. El 10 iría a la posición 0, el 11 a la 1, etc… Además, en esa posición, en el vector dinámico que hay, se van almacenar los números que deben preceder al número asociado a esa posición, es decir, la columna de la izquierda. Para ello, se lee un fichero línea por línea que contiene toda la entrada. Cuando se en la línea se encuentre una “|” significa que se nos está dando una norma, por lo que la gestionaremos con el procedimiento explicado. Cuando se lee una coma, significa que nos están dando los números de página de cada actualización, por lo que se hace el siguiente procedimiento:  Se toma el primer número de la línea y se leen todos los siguientes hasta el final. Si en los números siguientes se encuentra un número que debe preceder al número tomado, se descarta que la línea sea correcta. Para ello se usa la función va_antes(int a, int b, vector<int> normas[]), que devuelve si a debe ir antes que b según las normas. Se hace este procedimiento sucesivamente para todos los números de la línea hasta que se encuentre un incumplimiento de las normas o hasta que se llegue al final, y por lo tanto se sume el número del medio a la suma total.
+
+### Segunda Parte
+  Para la segunda parte ha sido tan sencillo como usar un mergeSort() con cada línea incorrecta, solo que en vez de usar el operador “<” se ha modificado para que use la función va_antes(..), y después de ordenarlo se suma el elemento del medio a otra variable para la suma de las líneas que han tenido que ordenarse.
+
+
