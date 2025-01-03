@@ -23,7 +23,7 @@ Sé que esto es demasiado, pero está por mantener un orden (y porque me he flip
 |Lunes|Martes|Miercoles|Jueves|Sabado|Domingo|
 |-----|------|---------|------|------|-------|
 ||||||✅1|
-|✅2|✅3|⌛4|❌5|❌6|❌7|❌8|
+|✅2|✅3|⌛4|✅5|❌6|❌7|❌8|
 |❌9|❌10|❌11|❌12|❌13|❌14|❌15|
 |❌16|❌17|❌18|❌19|❌20|❌21|❌22|
 |❌23|❌24|❌25|||||
@@ -84,6 +84,6 @@ Para la primera parte se ha creado un unordered_map<int, unordered_set<int>> gra
  
 
 ### Segunda Parte
-Para la segunda parte se ha usado un orden topológico usando el algoritmo de Kahn. Una vez ordenado se procede igual que en la primera parte para la suma de los que han tenido que ser ordenados.
+Para la segunda parte se ha usado un orden topológico usando el algoritmo de Kahn para ordenar cada secuencia. Una vez ordenado se procede igual que en la primera parte para la suma de los que han tenido que ser ordenados.
 
 
