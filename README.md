@@ -87,3 +87,11 @@ Para la primera parte se ha creado un unordered_map<int, unordered_set<int>> gra
 Para la segunda parte se ha usado un orden topológico usando el algoritmo de Kahn para ordenar cada secuencia. Una vez ordenado se procede igual que en la primera parte para la suma de los que han tenido que ser ordenados.
 
 
+## Dia 16
+### Primera Parte
+Primeramente, para gestionar los movimientos se ha creado un una esteructura Punto que almacena las cooredenadas de posición y dirección, además del coste necesario para llegar a ese punto.
+
+En un principio se probó una busqueda en profudunidad haciendo llamadas recursivas con todos los movimientos posibles y quedándote con el valor mínimo---
+
+
+
