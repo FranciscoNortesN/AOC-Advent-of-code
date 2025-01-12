@@ -2,7 +2,7 @@
 ### Justificación
  Elegimos este problema porque fue el primer día en el que detectamos que claramente nos encontrábamos ante un grafo de precedencia, y como todavía no habían salido más y teníamos tiempo antes de empezar exámenes, decidimos hacerlo. Si bien la dificultad no era demasiado alta, lo vimos como un problema para tener un primer contacto con grafos. 
 ### Descripción técnica
-#### Primera Part
+#### Primera Parte
  Para la primera parte se nos dan varias reglas del tipo A|B, donde A debe preceder a B. Después, aparecen secuencias de números y se debe comprobar si todos los números de la secuencia cumplen las reglas que tienen asociadas. Sabiendo las secuencias correctas, debemos calcular la suma de los números del medio de todas las secuencias correctas.
 
 Lo primero de todos es crear el grafo. Para ello se usa un diccionario ```unordered_map<int, unordered_set<int>> grafo```. Las claves son números enteros y el valor que tienen asociado es un conjunto de enteros, el cual contiene todos los números que deben ir después del número de la clave. Para ir rellenando el grafo,  se lee línea por línea un fichero con el input. Si se lee el carácter ‘|’,  se trata de una norma (al principio se quiso usar una función ```vector<int> split()``` que implementamos, pero misteriosamente hacía que el algoritmo de la segunda parte no funcionase correctamente).  Así que tomamos carácter por carácter e hicimos las operaciones necesarias para convertirlos a enteros. Al primer número lo llamamos A y al segundo B, y luego hacemos ```grafo[A].pushback(B)``` y así al acceder acceder a ```grafo[A]``` tendremos todos los números que deben ir después de A. 
