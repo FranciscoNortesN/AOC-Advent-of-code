@@ -24,9 +24,7 @@ public:
 
     // Método para verificar si el punto es válido en un laberinto
     bool es_valido(const vector<vector<char>>& maze) const {
-        int rows = maze.size();
-        int cols = maze[0].size();
-        return posX >= 0 && posX < rows && posY >= 0 && posY < cols && maze[posX][posY] != '#';
+        return maze[posX][posY] != '#';
     }
 
     // Método para mover adelante
