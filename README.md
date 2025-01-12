@@ -45,6 +45,11 @@ Si la función cumple_reglas() devuelve ```false```, se llama a una función ```
 ### Alternativas 
 En un principio se pensó en usar un array con 90 posiciones, ya que los números van del 10 al 99, pero nos dimos cuenta de que se desperdiciaba demasiada memoria y optamos por el unordered_map. Por otro lado, en otro momento también se almacenaron las precedencias de forma inversa a la actual, es decir, en grafo[B] se almacenaban todos los números A que debían ir antes de B. Así la función a_b() devolvía si a debía ir antes de b. Además para la parte de ordenación, y con la excusa de usar Divide y Vencerás, probamos con un MergeSort() modificado, donde sustituimos el operador “<” por la función a_b() a la hora de ordenar los números. Este MergeSort() funcionaba pero era muy ineficiente hacer tantas comprobaciones, así que finalmente implementamos el algoritmo de Kahn. De todos modos quedan algunos misterios sin   resolver. Por ejemplo, al principio en lugar de split se usaba un ```while ((pos=linea.find(',')) != string::npos)``` y se iban metiendo los números haciendo un stoipor alguna razón el orden topológico no funcionaba correctamente. Además hay una función para imprimir el grafo y por un motivo que escapa nuestro entendimiento se guarda una clave: -479 con valor 37, aunque no afecta al resultado.
 
+### Valoración Personal 
+
+En lo personal creemos que este problema nos ha servido para establecer las bases de cómo implementar grafos dirigidos en C++ y ordenarlos. En la parte personal, si bien el problema no parecía demasiado complicado y teníamos claro lo que debíamos hacer, han aparecido problemas y complicaciones, como las explicadas en las alternativas, que no comprendemos. Es algo que ha resultado muy frustrante pero entendemos que es parte del aprendizaje y ayuda a enfrentar futuros problemas. 
+
+
 
 
 
