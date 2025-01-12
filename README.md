@@ -1,35 +1,14 @@
 # AOC (Advent-of-code)
-## Aclaraciones previas sobre el github que luego (cuando todos las hayais leido) se eliminarán
-Aquí irán las explicaciones de los códigos de cada uno de los problemas resueltos que se encuentren en el github.  
-Si terminas con 2 espacios es un salto de línea.  
-Si dejas una línea en blanco en medio de dos líneas en el markdown, tambien te lo detecta como línea.
-
-Un hashtag (almuadilla) es un título de nivel 1, dos son un título de nivel 2; tres, de nivel tres...  
-Si se quiere hacer una tabla, se puede poner una combinación de | y - (el primero enseña líneas y el segundo separa el nombre de las columnas del resto de columnas, cada fila una vez separado el nombre de la columna de lo demás, se crea simplemente añadiendo una línea nueva, | tambien separa columnas).  
-Otras cosas que o no queden claras por cómo las he explicado o no estén explicadas, preguntarselas a vuestra IA de confianza.
-También se puede incluir otras cosas usando html, por si os sirve.  
-
-Sobre cómo rellenar el readme, de manera que tengamos las cosas claras entre nosotros y claras en cuanto a presentación (supongo que tendremos que entregar o el github o un documento que lo posea todo explicado) hablaremos en una reunion futura.  
-Considero que es mejor que tengamos desde un primer momento esto ya definido para así poder entregarlo sin problemas.
-
 ## Días resueltos 
-Si se tiene un problema que está en curso, no es necesario actualizar el readme (si quieres, como mucho, quita la cruz).  
-Para indicar que está incompleto/se ha empezado pero no se sabe cómo completar se pondrá 📝, el emoji indicará que se le deja a otra persona.  
-Si hay algun problema en el que uno quiere dedicar su tiempo sin que nadie se meta pero puede tardar un tiempo largo, se pondrá ⌛.  
-Si un problema está completado pero no se ha añadido la explicación se pondrá 🔄.
-Si un problema está completo, se pondrá ✅.
-Sé que esto es demasiado, pero está por mantener un orden (y porque me he flipado un poco al escribir todo esto).
+Aquí se indican los problemas que se han resuelto, ⌛ indica que solo se encuentra la primera parte, ✅ indica que se encuentran ambas partes o la segunda parte que se ha hecho a partir de la primera parte y por ende posee el código de dicha parte y ❌ indica que no se ha colocado ninguna parte.
 
 |Lunes|Martes|Miercoles|Jueves|Sabado|Domingo|
 |-----|------|---------|------|------|-------|
 ||||||✅1|
-|✅2|✅3|⌛4|✅5|❌6|❌7|❌8|
-|❌9|❌10|❌11|❌12|❌13|❌14|❌15|
-|❌16|❌17|❌18|❌19|❌20|❌21|❌22|
+|❌2|❌3|❌4|✅5|❌6|❌7|❌8|
+|❌9|❌10|⌛11|❌12|❌13|❌14|❌15|
+|⌛16|❌17|❌18|❌19|❌20|❌21|❌22|
 |❌23|❌24|❌25|||||
-
-## Otras explicaciones
-Con poner make bin/"número del día" se compila el código y se guarda directamente en una carpeta bin. Se puede editar el makefile si se requiere una compilación diferente (por ejemplo si a la hora de compilar se requiere de una librería). En inputs, se colocará el input que resuelve nuestro código, así se puede ejecutar poniendo ./bin/"número del día" < inputs/dia"número del día".
 
 # Explicaciones de código
 ## Día 1
@@ -45,47 +24,29 @@ En cuanto a la segunda parte, se nos pedía que esta vez en vez de entregar la s
 
 En este caso, no se hizo ninguna solución complicada, símplemente se recorrió la lista y se hizo la multiplicación con lo que devuelvia una función, la cual simplemente contaba el número de veces que salía el número que se le pasaba en la segunda lista. Además se le puso un poco de memoria a la función para aumentar su velocidad (si ya se había contado el número, no se volvía a contar).
 
-## Día 2
-### Primera Parte
-En esta parte, se nos pedía que dada una lista de reportes de longitud no mencionada, que analizaramos si estos eran seguros. Un reporte se consideraba seguro si los niveles que contenía eran 100% crecientes o decrecientes y si la diferencia entre cada uno de los niveles en el reporte se encontraba entre 1 y 3. Por último se nos pedía que entregaramos el número de reportes seguros.
-
-Este día se complicó un poco porque se trató de aplicar una solución que utilizara lo aprendido en clase de PRA, pero tras un tiempo de complicaciones, se decidió aplicar una solución más sencilla la cual consistía en recorrer cada uno de los reportes unas 2 veces, una para comprobar que todos los niveles o subían o bajaban y otra para comprobar que los niveles no posean una diferencia mayor a 3 o menor a 1.
-
-### Segunda Parte
-En esta parte se nos dijo que se admitía que los reportes tuvieran un nivel erroneo si al eliminarlo se cumplían las condiciones de la primera parte, es decir, si un reporte había fallado, pero tras eliminar un solo nivel del reporte este ya no fallaba, se consideraba que el reporte era seguro. Otra vez se nos pidió que entregaramos el número de reportes seguros.
-
-Otra vez se complicó un poco la solución, porque integrarla en la solución de la primera parte era complicado por cómo estaba escrito el código de la primera parte. Se decidió por reescribir el código de la primera parte de tal manera que fuera más facil integrar los cambios necesarios para la segunda parte. Una vez hecho esto, originalmente se pensó que sería una buena idea guardar donde está el elemento que ocasionaba el fallo y eliminarlo y volver a hacer la prueba, pero por si acaso, se decidió que era una mejor idea hacer una copia del reporte e ir haciendo el análisis eliminando con un elemento eliminado distinto cada vez.
-
-## Día 3
-### Primera Parte
-En esta parte se nos pedía que dada una memoria corrupta, que extrayeramos la instrucción mul(X,Y) y que realicemos la multiplicación de X por Y y que imprimieramos las suma de todas las multiplicaciones realizadas. La instrucción de mul(X,Y) se tenía que encontrar exactamente de la manera en la que aparece en el parrafo y no con algún caracter extraño o un espacio que separe los números de los paréntesis o comas. Tras un poco de investigación, se descubrió que se podía hacer con un regex.
-
-Este día se volvió a complicar, porque no conocíamos nada sobre regex y tuvimos que aprenderlo. Aunque una vez aprendido lo suficiente, nos pusimos con la solución y en un periodo de tiempo normal, esta se consiguió. Para lograrlo, lo que se hizo fue crear un regex que buscara la instrucción, luego el lugar donde la ha encontrado, se guardóen un string, del que se extrajeron los números y se realizaron las multiplicaciones. Tras esto, tuvimos un problema y era que el regex no encontraba todas las intruciones, pero tras un tiempo, descubirmos que era porque no habíamos puesto correctamente la eliminación de la instrucción encontrada. Tras esto, se solucionó el problema.
-
-### Segunda Parte
-En esta parte, se nos dijo que además de la instrución mul(X,Y, tambien se podía encontrar la instrucción do() y la instrucción don't() que habilitaban y deshabilitaban la instrucción mul(X,Y). Se nos pidió que realizaramos la suma de todas las multiplicaciones realizadas, pero que si la instrucción mul(X,Y) estaba deshabilitada, no se realizara la multiplicación. Para ello, se nos pidió que entregaramos la suma de todas las multiplicaciones realizadas.
-
-Para esta parte, se decidió que era mejor editar el regex, de tal manera que este encontrara o un do o un don't o la instrucción mul. Una vez encontrado, se guardaba en un string y se comprobaba si era un mul o un do o un don't usando un regex específico para cada una de las instrucciones. Si era un mul, se realizaba la multiplicación tras haber comprobado si esta estaba habilitada, si era un do, se habilitaba la instrucción mul y si era un don't, se deshabilitaba la instrucción mul. Tras esto, se realizó la suma de todas las multiplicaciones realizadas.
-
-## Día 4
-### Primera Parte
-En esta parte, se nos pedía que resolvieramos una sopa de letras buscando la palabra XMAS y que entregaramos el número de veces que salía la palabra en la sopa de letras. La palabra podía estar en cualquier dirección y podía estar en cualquier lugar de la sopa de letras.
-
-Esta parte fue bastante sencilla, porque simplemente se recorrió la sopa de letras y se comprobó si en alguna de las direcciones se encontraba la letra X, si se encontraba, se comprobaba si en alguna dirección
-tenía la letra M, si la tenía, se comprobaba si en esa dirección estaba la A y así hasta llegar a la S. Si se encontraba la S, se sumaba 1 al contador de palabras encontradas.
-
-
-
-
 ## Día 5
-
 ### Primera Parte
-Para la primera parte se ha creado un unordered_map<int, unordered_set<int>> grafo, donde los pares clave valor están compuestos respectivamente por un número y el conjunto de los números que deben ir después de él(nodos de salida). Para comprobar si una secuencia de números respeta las normas, basta con tomar un número y analizar los números anteriores a él. Si se encuentra un número que debería ir después del número que hemos tomado, la secuencia es automaticamente incorrecta. Así para todos los números de la secuencia. Sabiendo las secuencias correctas calculamos su número del medio y lo sumamos a la variable de la suma de los correctos.
+Para la primera parte se ha creado un 
+```cpp
+unordered_map<int, unordered_set<int>> grafo 
+```
+donde los pares clave valor están compuestos respectivamente por un número y el conjunto de los números que deben ir después de él(nodos de salida). Para comprobar si una secuencia de números respeta las normas, basta con tomar un número y analizar los números anteriores a él. Si se encuentra un número que debería ir después del número que hemos tomado, la secuencia es automaticamente incorrecta. Así para todos los números de la secuencia. Sabiendo las secuencias correctas calculamos su número del medio y lo sumamos a la variable de la suma de los correctos.
  
-
 ### Segunda Parte
 Para la segunda parte se ha usado un orden topológico usando el algoritmo de Kahn para ordenar cada secuencia. Una vez ordenado se procede igual que en la primera parte para la suma de los que han tenido que ser ordenados.
 
+## Día 11
+### Primera Parte
+Originalmente este día se hizo mediante fuerza bruta, pero incorporando programación dinámica para que fuera algo más eficiente. Pero tras no poder hacer la segunda parte se dejó el día de lado hasta que se hayan decidido que días entregar. Tras un tiempo, se volvió a ver el problema y se vío que la forma en el que el problema iba se parecía bastante a un arbol binario.
+
+El problema indicaba que se nos daban unos números que significaban piedras y cada vez que parpadeabamos estas eran modificadas de alguna manera, siendo una de estas:
+- Si la piedra era 0, se convertía en 1.
+- Si la piedra poseía un número par de dígitos, se partía en dos piedras con la mitad superior de dígitos en una y la mitad inferior en otra piedra.
+- Si no se cumplía ninguna de las reglas anteriores, el número de la piedra se multiplicaba por 2024.
+
+Aquí lo que se vío que dijo que esto podría ser un arbol, es que cada piedra es independiente de sus vecinas y que esta o producía una piedra distinta o producía dos piedras. Por lo que se acabó reescribiendo el código por completo para que fuera un arbol aunque no se hiciera la segunda parte. Luego ya, como se nos pedía que dijeramos cuantas piedras habian en el nivel n, lo que se hizo es recorrer el arbol hasta llegar a ese nivel y sumar 1 si había una piedra en ese nivel.
+
+Además, para crear el arbol se quiso usar un poco de programación dinámica (y así además ahorrar bastante memoria porque cuanto más grande el arbol más memoria se necesita) y se creó un vector de vectores de punteros a nodos del arbol, al cual se añadía el nodo del arbol una vez completo ese nodo en las llamadas recursivas.
 
 ## Dia 16
 ### Primera Parte
