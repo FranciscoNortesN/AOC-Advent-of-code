@@ -25,15 +25,20 @@ En cuanto a la segunda parte, se nos pedía que esta vez en vez de entregar la s
 En este caso, no se hizo ninguna solución complicada, símplemente se recorrió la lista y se hizo la multiplicación con lo que devuelvia una función, la cual simplemente contaba el número de veces que salía el número que se le pasaba en la segunda lista. Además se le puso un poco de memoria a la función para aumentar su velocidad (si ya se había contado el número, no se volvía a contar).
 
 ## Día 5
-### Primera Parte
-Para la primera parte se ha creado un 
-```cpp
-unordered_map<int, unordered_set<int>> grafo 
-```
-donde los pares clave valor están compuestos respectivamente por un número y el conjunto de los números que deben ir después de él(nodos de salida). Para comprobar si una secuencia de números respeta las normas, basta con tomar un número y analizar los números anteriores a él. Si se encuentra un número que debería ir después del número que hemos tomado, la secuencia es automaticamente incorrecta. Así para todos los números de la secuencia. Sabiendo las secuencias correctas calculamos su número del medio y lo sumamos a la variable de la suma de los correctos.
+### Justifiación
+ Elegimos este problema porque fue el primer día en el que detectamos que claramente nos encontrábamos ante un grafo de precedencia, y como todavía no habían salido y teníamos tiempo antes de empezar exámenes decidimos hacerlo. Además, lo vimos como un problema que no era trivial pero tampoco presentaba una dificultad excesiva. 
+### Descripción técnica
+#### Primera Parte
+ Para la primera parte se nos dan varias reglas del tipo A|B, donde A debe preceder a B. Después, aparecen secuencias de números y se debe comprobar si todos los números de la secuencia cumplen las reglas que tienen asociadas. Después debemos que calcular la suma los números del medio de todas las secuencias correctas.
+
+Lo primero de todos es crear el grafo. Para ello se usa un '''cpp unordered_map<int, unordered_set<int>> grafo''', que es básicamente un diccionario. Las claves son números enteros y el valor que tienen asociado es un conjunto de enteros, el cual almacena todos los números que deben ir después del número de la clave. Para ir rellenando el grafo,  se lee línea por línea un fichero con el input. Si se lee el carácter ‘|’,  se trata de una norma (Al principio se quiso usar una función split() que implementamos, pero misteriosamente hacía que el algoritmo de la segunda parte no funcionase correctamente).  Así que tomamos carácter por carácter e hicimos las operaciones necesarias para convertirlos a enteros. Al primer número lo llamamos A y al segundo B, y luego hacemos grafo[A].pushback(B) y así al acceder acceder a grafo[A] tendremos todos los números que deben ir después de A. 
+
+Cuando ya no leemos ‘|’, se trata de una secuenciar, y aquí sí que usamos la función split, la cual devuelve un vector con los números leídos. Para comprobar si es correcta vamos a usar dos funciones. Una llamada a_b(a, b, grafo), la cual devuelve si si b debe ir después a según las reglas. Para ello es tan simple como devolver si b se encuentra en grafo[a]. Después, definimos una función llamada cumple_reglas(input, grafo). Esta usa dos bucles for anidados, el primero, recorriendo el vector input del último al primero, toma un número i y el anidado recorre el resto de números j. Así por cada iteración se se llama a a_b(i, j, grafo). Si a_b() devuelve true significa que se ha encontrado un número j antes de i, pero que según las reglas debería ir después de i, así que la línea input es automáticamente incorrecta. Por cada línea llamamos a cumple_reglas() y si las cumple calculamos el número del medio y lo sumamos a la variable de la suma de los correctos. 
+
  
-### Segunda Parte
-Para la segunda parte se ha usado un orden topológico usando el algoritmo de Kahn para ordenar cada secuencia. Una vez ordenado se procede igual que en la primera parte para la suma de los que han tenido que ser ordenados.
+#### Segunda Parte
+
+
 
 ## Día 11
 ### Primera Parte
