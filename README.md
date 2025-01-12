@@ -31,12 +31,17 @@ En este caso, no se hizo ninguna solución complicada, símplemente se recorrió
 #### Primera Parte
  Para la primera parte se nos dan varias reglas del tipo A|B, donde A debe preceder a B. Después, aparecen secuencias de números y se debe comprobar si todos los números de la secuencia cumplen las reglas que tienen asociadas. Después debemos que calcular la suma los números del medio de todas las secuencias correctas.
 
-Lo primero de todos es crear el grafo. Para ello se usa un '''cpp unordered_map<int, unordered_set<int>> grafo''', que es básicamente un diccionario. Las claves son números enteros y el valor que tienen asociado es un conjunto de enteros, el cual almacena todos los números que deben ir después del número de la clave. Para ir rellenando el grafo,  se lee línea por línea un fichero con el input. Si se lee el carácter ‘|’,  se trata de una norma (Al principio se quiso usar una función split() que implementamos, pero misteriosamente hacía que el algoritmo de la segunda parte no funcionase correctamente).  Así que tomamos carácter por carácter e hicimos las operaciones necesarias para convertirlos a enteros. Al primer número lo llamamos A y al segundo B, y luego hacemos grafo[A].pushback(B) y así al acceder acceder a grafo[A] tendremos todos los números que deben ir después de A. 
+Lo primero de todos es crear el grafo. Para ello se usa un  ` ` `cpp unordered_map<int, unordered_set<int>> grafo ` ` `, que es básicamente un diccionario. Las claves son números enteros y el valor que tienen asociado es un conjunto de enteros, el cual contiene todos los números que deben ir después del número de la clave. Para ir rellenando el grafo,  se lee línea por línea un fichero con el input. Si se lee el carácter ‘|’,  se trata de una norma (Al principio se quiso usar una función split() que implementamos, pero misteriosamente hacía que el algoritmo de la segunda parte no funcionase correctamente).  Así que tomamos carácter por carácter e hicimos las operaciones necesarias para convertirlos a enteros. Al primer número lo llamamos A y al segundo B, y luego hacemos grafo[A].pushback(B) y así al acceder acceder a grafo[A] tendremos todos los números que deben ir después de A. 
 
 Cuando ya no leemos ‘|’, se trata de una secuenciar, y aquí sí que usamos la función split, la cual devuelve un vector con los números leídos. Para comprobar si es correcta vamos a usar dos funciones. Una llamada a_b(a, b, grafo), la cual devuelve si si b debe ir después a según las reglas. Para ello es tan simple como devolver si b se encuentra en grafo[a]. Después, definimos una función llamada cumple_reglas(input, grafo). Esta usa dos bucles for anidados, el primero, recorriendo el vector input del último al primero, toma un número i y el anidado recorre el resto de números j. Así por cada iteración se se llama a a_b(i, j, grafo). Si a_b() devuelve true significa que se ha encontrado un número j antes de i, pero que según las reglas debería ir después de i, así que la línea input es automáticamente incorrecta. Por cada línea llamamos a cumple_reglas() y si las cumple calculamos el número del medio y lo sumamos a la variable de la suma de los correctos. 
 
  
 #### Segunda Parte
+
+Para la segunda parte se pide ordenar las secuencias que no cumplen las reglas, y como en la primera parte, calcular la suma de los elementos del medio. 
+
+
+Si la función cumple_reglas() devuelve false, se llama a una función que aplica un orden topológico llamada
 
 
 
